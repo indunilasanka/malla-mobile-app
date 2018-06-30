@@ -1,0 +1,147 @@
+﻿<html>
+<head>
+    <link href="css/App/home.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <ons-navigator animation="fade" var="homeNavigator">
+        <ons-page class="ons-page-fixed" ng-controller="signUpCtrl" data-ng-init="init()">
+
+            <div class="navigation-bar">
+                <div class="navigation-bar__left">
+                    <span class="toolbar-button--quiet navigation-bar__line-height" ng-click="menu.toggle()">
+                        <ons-icon icon="ion-navicon" size="28px" fixed-width="false" style="color:white"></ons-icon>
+                    </span>
+                </div>
+
+                <div class="navigation-bar__center">
+                    <label class="toolbarHeader" style="color:white">Contact us</label>
+                </div>
+                <div class="navigation-bar__right">
+                    <span style="color:white" class="toolbar-button--quiet navigation-bar__line-height" ng-click="formClear()">Clear</span>
+                </div>
+            </div>
+
+            <div class="formarea">
+                <form name="signupForm" novalidate="">
+
+                    <ons-row>
+                        <ons-col>
+                            <input type="text" name="firstName" value="" ng-model="info.firstName" required ng-class="{ 'has-errors' : signupForm.firstName.$invalid, 'no-errors' : signupForm.firstName.$valid}"
+                                   ng-messages-include="commonErrorList.html" placeholder="Name" class="text-input text-input--underbar" ng-mouseup="errorMsg('firstName')">
+                            <div style="display: none;" id="firstName" class="error-container" ng-show="signupForm.firstName.$error" ng-messages="signupForm.firstName.$error" ng-messages-include="commonErrorList.html"></div>
+                        </ons-col>
+                    </ons-row>
+
+                    <ons-row>
+                        <ons-col><input type="tel" class="text-input--underbar" ng-model="info.Phone" placeholder="Phone" value=""></ons-col>
+                    </ons-row>
+
+                    <ons-row>
+                        <ons-col>
+                            <input type="text" name="SignUpemailAdress" value="" ng-model="info.Email" ng-pattern="/^[_a-zA-Z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required ng-class="{ 'has-errors' : signupForm.SignUpemailAdress.$invalid, 'no-errors' : signupForm.SignUpemailAdress.$valid}"
+                                   ng-messages-include="commonErrorList.html" placeholder="Email" class="text-input text-input--underbar" ng-mouseup="errorMsg('SignUpemailAdress')">
+                            <div style="display: none;" id="SignUpemailAdress" class="error-container" ng-show="signupForm.SignUpemailAdress.$error" ng-messages="signupForm.SignUpemailAdress.$error" ng-messages-include="commonErrorList.html"></div>
+                        </ons-col>
+                    </ons-row>
+
+                    <ons-row>
+                        <ons-col>
+                            <input type="text" name="SignUpCountry" style="width: 100%" placeholder="City" class="text-input text-input--underbar" ng-model="info.countryValue">
+                        </ons-col>
+                    </ons-row>
+
+                    <br />
+
+                    <ons-row>
+                        <textarea class="textarea" ng-model="info.Message" style="width:100%;" rows="5" placeholder="Message"></textarea>
+                    </ons-row>
+
+                    <br />
+
+                    <ons-template id="commonErrorList.html">
+                        <div class="error" ng-message="required">
+                            <ons-row>
+                                <ons-col width="15px">
+                                    <i class="ion-information-circled"></i>
+                                </ons-col>
+                                <ons-col>
+                                    Required!
+                                </ons-col>
+                            </ons-row>
+                        </div>
+                        <div class="error" ng-message="pattern">
+                            <ons-row>
+                                <ons-col width="15px">
+                                    <i class="ion-information-circled"></i>
+                                </ons-col>
+                                <ons-col>
+                                    Invalid!
+                                </ons-col>
+                            </ons-row>
+                        </div>
+                        <div class="error" ng-message="minlength">
+                            <ons-row>
+                                <ons-col width="15px">
+                                    <i class="ion-information-circled"></i>
+                                </ons-col>
+                                <ons-col>
+                                    Short!
+                                </ons-col>
+                            </ons-row>
+                        </div>
+                    </ons-template>
+
+                    <ons-row class="profile-wrapper">
+                        <ons-button modifier="large--cta" style="width:100%;" ng-click="errorMsg('buttonPress'); validateForm(signupForm)">
+                            <ons-icon icon="ion-ios-paperplane" size="28px" fixed-width="false"></ons-icon>
+                            Email
+                        </ons-button>
+                    </ons-row>
+
+                    <div style="text-align:center; font-size:12px; padding:5px 0">
+                        OR
+                    </div>
+
+                    <ons-row class="profile-wrapper">
+                        <ons-col>
+                            <ons-button modifier="large--cta" style="width:100%; background-color:lightgreen" ng-click="callNumber()">
+                                <ons-icon icon="ion-ios-telephone" size="28px" fixed-width="false"></ons-icon>
+                                Call
+                            </ons-button>
+                        </ons-col>
+                        <ons-col width="5px"></ons-col>
+                        <ons-col>
+                            <ons-button modifier="large--cta" style="width:100%; background-color:sandybrown" ng-click="sendSMS()">
+                                <ons-icon icon="ion-android-textsms" size="28px" fixed-width="false"></ons-icon>
+                                Message
+                            </ons-button>
+                        </ons-col>
+                    </ons-row>
+
+                    <ons-row class="profile-wrapper">
+                        <div id="contact-map"> </div>
+                    </ons-row>
+
+                </form>
+            </div>
+
+            <ons-modal var="EmailSending" style="background-color:rgba(0, 0, 0, 0.86);">
+                <ons-row>
+                    <ons-col>
+                        <div id="EmailLoadingIcon">
+                            <ons-icon icon="ion-ios-loop" style="font-size:25px" spin="true"></ons-icon>
+                        </div>
+                        <div id="EmailSuccessfulIcon" hidden>
+                            <ons-icon icon="ion-ios-checkmark-outline" style="font-size:50px"></ons-icon>
+                        </div>
+                    </ons-col>
+                </ons-row>
+                <br />
+                <label id="singupFinalMessage"></label>
+            </ons-modal>
+
+        </ons-page>
+    </ons-navigator>
+</body>
+</html>

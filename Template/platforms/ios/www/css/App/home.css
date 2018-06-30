@@ -1,0 +1,42 @@
+﻿  table, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    .ng-anim {
+        -webkit-transition: 1s;
+        transition: 1s;
+        opacity: 1;
+    }
+
+    .fade {
+        -webkit-transition: 1s;
+        transition: 1s;
+        opacity: 0.2;
+    }
+
+    .center-self {
+        margin: 0 auto;
+    }
+
+    .navigation-bar {
+        background-color:#39b54a;
+        border:none;
+    }
+
+    .limheight {
+
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+
+    }
+
+    .limheight li {
+        display: inline; /*necessary*/
+    }
+
+    .imghclz:hover {
+        opacity: 0.5;
+        /*cursor:pointer;*/
+    }

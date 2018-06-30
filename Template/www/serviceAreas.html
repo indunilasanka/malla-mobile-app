@@ -1,0 +1,95 @@
+﻿
+<html>
+<head>
+    <link href="css/App/home.css" rel="stylesheet" />
+    <title></title>
+    <meta http-equiv="Content-Security-Policy" content="default-src * blob: ; script-src 'unsafe-eval' 'unsafe-inline' *; script src 'self' https://*.googleapis.com 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline'; img-src data: *">
+</head>
+<body>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDolMEKMgJtO8lq4O-jNlHKiQ21cZzHEpM&sensor=false"></script>
+    <ons-navigator animation="fade" var="homeNavigator">
+        <ons-page class="ons-page-fixed">
+
+            <div class="navigation-bar">
+                <div class="navigation-bar__left">
+                    <span class="toolbar-button--quiet navigation-bar__line-height" ng-click="menu.toggle()">
+                        <ons-icon icon="ion-navicon" size="28px" fixed-width="false" style="color:white"></ons-icon>
+                    </span>
+                </div>
+
+                <div class="navigation-bar__center">
+                    <label class="toolbarHeader" style="color:white">SERVICE AREAS</label>
+                </div>
+            </div>
+
+
+            <div ng-controller="mapController" sliding-menu-ignore="true" data-ng-init="init()">
+                <ons-list modifier="inset" style="margin-top: 10px">
+
+                    <ons-list-item modifier="tappable">
+                        <label class="radio-button radio-button--list-item">
+                            Dehiwala
+                        </label>
+                    </ons-list-item>
+
+                    <ons-list-item modifier="tappable">
+                        <label class="radio-button radio-button--list-item">
+                            Mount Lavina
+                        </label>
+                    </ons-list-item>
+
+                    <ons-list-item modifier="tappable">
+                        <label class="radio-button radio-button--list-item">
+                            Rathmalana
+                        </label>
+                    </ons-list-item>
+
+                    <ons-list-item modifier="tappable">
+                        <label class="radio-button radio-button--list-item">
+                            Aththidiya
+                        </label>
+                    </ons-list-item>
+
+                    <ons-list-item modifier="tappable">
+                        <label class="radio-button radio-button--list-item">
+                            Nugegoda
+                        </label>
+                    </ons-list-item>
+
+                    <ons-list-item modifier="tappable">
+                        <label class="radio-button radio-button--list-item">
+                            Kotte
+                        </label>
+                    </ons-list-item>
+
+                    <ons-list-item modifier="tappable">
+                        <label class="radio-button radio-button--list-item">
+                            Nawala
+                        </label>
+                    </ons-list-item>
+
+                    <ons-list-item modifier="tappable">
+                        <label class="radio-button radio-button--list-item">
+                            Rajagiriya
+                        </label>
+                    </ons-list-item>
+
+                    <ons-list-item modifier="tappable">
+                        <label class="radio-button radio-button--list-item">
+                            Colombo 01 to Colombo 15
+                        </label>
+                    </ons-list-item>
+
+                    <ons-list-item>
+                        <div id="map"></div>
+                    </ons-list-item>
+
+                </ons-list>
+
+                </div>
+
+        </ons-page>
+    </ons-navigator>
+</body>
+</html>
